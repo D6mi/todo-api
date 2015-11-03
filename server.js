@@ -27,9 +27,7 @@ app.get('/todos/:id', function (req, res) {
 	if(matchedTodo) {
 		res.json(matchedTodo);
 	} else {
-		res.status(404).json({
-			error: 'Invalid params'
-		});
+		res.status(404).send();
 	}
 });
 
@@ -37,6 +35,9 @@ app.post('/todos', function (req, res) {
 	var todo = _.pick(req.body, 'description', 'completed');
 
 	console.log(todo);
+json({
+			error: 'Invalid params'
+		})
 
 	if(!_.isBoolean(todo.completed) || !_.isString(todo.description) || todo.description.trim().length == 0) {
 		return res.status(400).send();
